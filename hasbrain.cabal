@@ -21,5 +21,9 @@ executable hasbrain
 library
   import: base
   hs-source-dirs: src
+  build-depends:
+    megaparsec,
+    text,
+    containers
   exposed-modules:
     Hasbrain
