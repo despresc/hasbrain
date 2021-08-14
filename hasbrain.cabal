@@ -24,6 +24,7 @@ library
   build-depends:
     megaparsec,
     text,
-    containers
+    containers,
+    mtl
   exposed-modules:
     Hasbrain
