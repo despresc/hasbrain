@@ -27,4 +27,6 @@ library
     containers,
     mtl
   exposed-modules:
-    Hasbrain
+    Hasbrain.Syntax
+    Hasbrain.Parsing
+    Hasbrain.NaiveInterpreter
