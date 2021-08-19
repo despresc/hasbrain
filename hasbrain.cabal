@@ -31,4 +31,4 @@ library
     Hasbrain.Surface.Parsing
     Hasbrain.Surface.Interpreter
     Hasbrain.InterpreterCommon
-    Hasbrain.LoopIntermediate.Instructions
+    Hasbrain.Loop.Instructions
