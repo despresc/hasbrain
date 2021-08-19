@@ -1,6 +1,6 @@
 {-# LANGUAGE GeneralizedNewtypeDeriving #-}
 
-module Hasbrain.Interpreter.Common where
+module Hasbrain.InterpreterCommon where
 
 import Control.Monad.RWS.Strict (RWS)
 import qualified Control.Monad.RWS.Strict as RWS

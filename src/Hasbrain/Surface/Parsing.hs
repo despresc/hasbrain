@@ -1,6 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
-module Hasbrain.Parsing where
+module Hasbrain.Surface.Parsing where
 
 import Control.Applicative ((<|>))
 import Data.Functor (($>))
@@ -8,7 +8,7 @@ import qualified Data.Set as S
 import Data.Text (Text)
 import qualified Data.Text as T
 import Data.Void
-import Hasbrain.Syntax
+import Hasbrain.Surface.Instructions
 import qualified Text.Megaparsec as MP
 
 {-

@@ -1,10 +1,10 @@
 {-# LANGUAGE BangPatterns #-}
 
-module Hasbrain.LoopIntermediate where
+module Hasbrain.LoopIntermediate.Instructions where
 
 import Data.Text (Text)
 import Data.Word (Word8)
-import qualified Hasbrain.Syntax as Syn
+import qualified Hasbrain.Surface.Instructions as Syn
 
 {-
 The brainfuck instruction set is modified here to contain a Loop and an Inc

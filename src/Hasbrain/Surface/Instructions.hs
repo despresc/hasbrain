@@ -1,6 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
-module Hasbrain.Syntax where
+module Hasbrain.Surface.Instructions where
 
 import Data.Text (Text)
 

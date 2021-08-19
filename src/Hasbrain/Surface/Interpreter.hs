@@ -1,11 +1,11 @@
 {-# LANGUAGE BangPatterns #-}
 {-# LANGUAGE OverloadedStrings #-}
 
-module Hasbrain.Interpreter.Naive where
+module Hasbrain.Surface.Interpreter where
 
 import Data.Traversable (for)
-import Hasbrain.Syntax
-import Hasbrain.Interpreter.Common
+import Hasbrain.Surface.Instructions
+import Hasbrain.InterpreterCommon
 
 -- | Move right along the tape until just after an unmatched 'JumpFromRight' is
 -- encountered, or until the end of the tape is reached
