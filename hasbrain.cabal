@@ -30,3 +30,4 @@ library
     Hasbrain.Syntax
     Hasbrain.Parsing
     Hasbrain.NaiveInterpreter
+    Hasbrain.LoopIntermediate

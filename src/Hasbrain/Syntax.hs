@@ -25,10 +25,10 @@ data Instr
   | PointerLeft
   | Increment
   | Decrement
-  | Output
-  | Input
   | JumpFromLeft
   | JumpFromRight
+  | Output
+  | Input
   | Comment !Text
   deriving (Eq, Ord, Show)
 
