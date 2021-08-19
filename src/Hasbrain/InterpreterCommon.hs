@@ -28,8 +28,8 @@ data InstrTape a = InstrTape [a] [a]
 data DataTape = DataTape WordStream !Word8 WordStream
 
 -- | The data tape starts with all cells initialized to zero
-initCellTape :: DataTape
-initCellTape = DataTape zeroes 0 zeroes
+initDataTape :: DataTape
+initDataTape = DataTape zeroes 0 zeroes
   where
     zeroes = constStream 0
 
@@ -84,7 +84,7 @@ data BrainState a = BrainState
   }
 
 initBrainState :: [a] -> BrainState a
-initBrainState is = BrainState (initInstrTape is) initCellTape
+initBrainState is = BrainState (initInstrTape is) initDataTape
 
 -- | Run a monadic computation until it halts, returning the final 'Just' value.
 runStepM ::

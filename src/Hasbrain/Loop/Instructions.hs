@@ -1,6 +1,6 @@
 {-# LANGUAGE BangPatterns #-}
 
-module Hasbrain.LoopIntermediate.Instructions where
+module Hasbrain.Loop.Instructions where
 
 import Data.Text (Text)
 import Data.Word (Word8)

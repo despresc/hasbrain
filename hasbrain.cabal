@@ -27,8 +27,9 @@ library
     containers,
     mtl
   exposed-modules:
-    Hasbrain.Surface.Instructions
-    Hasbrain.Surface.Parsing
-    Hasbrain.Surface.Interpreter
     Hasbrain.InterpreterCommon
     Hasbrain.Loop.Instructions
+    Hasbrain.Surface
+    Hasbrain.Surface.Instructions
+    Hasbrain.Surface.Interpreter
+    Hasbrain.Surface.Parsing
