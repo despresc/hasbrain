@@ -29,5 +29,6 @@ library
   exposed-modules:
     Hasbrain.Syntax
     Hasbrain.Parsing
-    Hasbrain.NaiveInterpreter
+    Hasbrain.Interpreter.Naive
+    Hasbrain.Interpreter.Common
     Hasbrain.LoopIntermediate
