@@ -30,6 +30,7 @@ library
     Hasbrain.InterpreterCommon
     Hasbrain.Loop
     Hasbrain.Loop.Instructions
+    Hasbrain.Loop.Interpreter
     Hasbrain.Loop.Parsing
     Hasbrain.Surface
     Hasbrain.Surface.Instructions

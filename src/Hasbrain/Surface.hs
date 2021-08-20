@@ -4,28 +4,30 @@ module Hasbrain.Surface
     renderInstr,
     renderInstrs,
     stripComments,
+    parseProgram,
 
     -- * A basic interpreter
     stepState,
     runStepM,
-    MonadInteract(..),
+    MonadInteract (..),
     PureInteract,
+    evalPureInteract,
     runPureInteract,
-    WordStream(..),
+    WordStream (..),
     constStream,
     constStreamWithPrefix,
-
   )
 where
 
 import Hasbrain.InterpreterCommon
-  ( WordStream (..),
+  ( MonadInteract (..),
+    PureInteract,
+    WordStream (..),
     constStream,
     constStreamWithPrefix,
-    runStepM,
-    MonadInteract(..),
-    PureInteract,
+    evalPureInteract,
     runPureInteract,
+    runStepM,
   )
 import Hasbrain.Surface.Instructions
   ( Instr (..),
@@ -35,4 +37,7 @@ import Hasbrain.Surface.Instructions
   )
 import Hasbrain.Surface.Interpreter
   ( stepState,
+  )
+import Hasbrain.Surface.Parsing
+  ( parseProgram,
   )

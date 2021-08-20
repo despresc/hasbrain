@@ -3,8 +3,10 @@ module Hasbrain.Loop
     Instr (..),
     instrToSurface,
     instrsToSurface,
+    parseProgram,
 
     -- * A basic interpreter
+    pureEvalInstrs,
     stepState,
     runStepM,
     MonadInteract (..),
@@ -17,6 +19,7 @@ module Hasbrain.Loop
   )
 where
 
+import Data.Word (Word8)
 import Hasbrain.InterpreterCommon
   ( MonadInteract (..),
     PureInteract,
@@ -24,6 +27,7 @@ import Hasbrain.InterpreterCommon
     constStream,
     constStreamWithPrefix,
     evalPureInteract,
+    initBrainState,
     runPureInteract,
     runStepM,
   )
@@ -32,6 +36,16 @@ import Hasbrain.Loop.Instructions
     instrToSurface,
     instrsToSurface,
   )
-import Hasbrain.Surface.Interpreter
+import Hasbrain.Loop.Interpreter
   ( stepState,
   )
+import Hasbrain.Loop.Parsing
+  ( parseProgram,
+  )
+
+-- | Evaluate the given instruction list with the given 'Word8' list as its
+-- input, extending that input list with a stream of 0 if it is too short.
+pureEvalInstrs :: [Instr] -> [Word8] -> [Word8]
+pureEvalInstrs instrs inp =
+  evalPureInteract (runStepM stepState $ initBrainState instrs) $
+    constStreamWithPrefix inp 0

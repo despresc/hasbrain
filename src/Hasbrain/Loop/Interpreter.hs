@@ -29,5 +29,5 @@ stepState bs = for (popInstrRight $ brainInstrs bs) $ \(ci, bis) ->
                   loopBS' <- runStepM stepState loopBS
                   if readData (brainData loopBS') == 0
                     then pure $ loopBS' {brainInstrs = brainInstrs bsL}
-                    else runLoop loopBS'
+                    else runLoop $ loopBS' {brainInstrs = initInstrTape x}
         Comment _ -> pure bsL
