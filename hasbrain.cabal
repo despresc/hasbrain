@@ -28,6 +28,7 @@ library
     mtl
   exposed-modules:
     Hasbrain.InterpreterCommon
+    Hasbrain.Loop
     Hasbrain.Loop.Instructions
     Hasbrain.Loop.Parsing
     Hasbrain.Surface

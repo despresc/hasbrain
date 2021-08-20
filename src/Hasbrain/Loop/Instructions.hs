@@ -1,5 +1,3 @@
-{-# LANGUAGE BangPatterns #-}
-
 module Hasbrain.Loop.Instructions where
 
 import Data.Text (Text)
@@ -25,38 +23,17 @@ data Instr
   | Comment !Text
   deriving (Eq, Ord, Show)
 
--- | Gather a single new 'Instr' from a list of old 'Syn.Instr'. Note that this
--- function will throw an error if it is given input with unbalanced
--- 'Syn.JumpFromLeft' and 'Syn.JumpFromRight' instructions.
-unsafePopFromSurface ::
-  Syn.Instr ->
-  [Syn.Instr] ->
-  (Maybe Instr, [Syn.Instr])
-unsafePopFromSurface x xs = case x of
-  Syn.PointerRight -> (Just PointerRight, xs)
-  Syn.PointerLeft -> (Just PointerLeft, xs)
-  Syn.Increment -> gatherVal 1 xs
-  Syn.Decrement -> gatherVal 255 xs
-  Syn.JumpFromLeft -> accUntilMatch id xs
-  Syn.JumpFromRight -> (Nothing, xs)
-  Syn.Output -> (Just Output, xs)
-  Syn.Input -> (Just Input, xs)
-  Syn.Comment t -> (Just $ Comment t, xs)
-  where
-    gatherVal !acc (Syn.Increment : ys) = gatherVal (acc + 1) ys
-    gatherVal !acc (Syn.Decrement : ys) = gatherVal (acc - 1) ys
-    gatherVal !acc ys = (Just $ Add acc, ys)
-    accUntilMatch acc (y:ys) = case unsafePopFromSurface y ys of
-      (Just i, ys') -> accUntilMatch (acc . (i:)) ys'
-      (Nothing, ys') -> (Just $ Loop $ acc [], ys')
-    accUntilMatch _ []
-      = error "unsafePopFromSurface internal error - unmatched JumpFromLeft"
+instrToSurface :: Instr -> [Syn.Instr]
+instrToSurface PointerRight = [Syn.PointerRight]
+instrToSurface PointerLeft = [Syn.PointerLeft]
+instrToSurface (Add x)
+  | x < 128 = replicate (fromIntegral x) Syn.Increment
+  | otherwise = replicate (256 - fromIntegral x) Syn.Decrement
+instrToSurface (Loop instrs) =
+  Syn.JumpFromLeft : (instrsToSurface instrs <> [Syn.JumpFromRight])
+instrToSurface Output = [Syn.Output]
+instrToSurface Input = [Syn.Input]
+instrToSurface (Comment t) = [Syn.Comment t]
 
--- | Convert a list of old brainfuck 'Syn.Instr' instructions to the new 'Instr'
--- type. Note that this function will throw an error if it is given input with
--- unbalanced 'Syn.JumpFromLeft' and 'Syn.JumpFromRight' instructions.
-unsafeFromSurface :: [Syn.Instr] -> [Instr]
-unsafeFromSurface (x : xs) = case unsafePopFromSurface x xs of
-  (Just i, xs') -> i : unsafeFromSurface xs'
-  (Nothing, _) -> error "unsafeFromSurface internal error - unmatched JumpFromRight"
-unsafeFromSurface [] = []
+instrsToSurface :: [Instr] -> [Syn.Instr]
+instrsToSurface = concatMap instrToSurface

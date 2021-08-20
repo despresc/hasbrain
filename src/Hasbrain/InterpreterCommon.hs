@@ -58,6 +58,9 @@ dataRight (DataTape l c (WordStream n w)) = DataTape (WordStream c l) n w
 dataLeft :: DataTape -> DataTape
 dataLeft (DataTape (WordStream n w) c r) = DataTape w n (WordStream c r)
 
+dataAdd :: Word8 -> DataTape -> DataTape
+dataAdd w (DataTape l c r) = DataTape l (w + c) r
+
 -- | Increment the current cell
 dataInc :: DataTape -> DataTape
 dataInc (DataTape l c r) = DataTape l (c + 1) r
@@ -88,8 +91,10 @@ initBrainState is = BrainState (initInstrTape is) initDataTape
 
 -- | Run a monadic computation until it halts, returning the final 'Just' value.
 runStepM ::
-  Monad m => (a -> m (Maybe a)) ->
-  a -> m a
+  Monad m =>
+  (a -> m (Maybe a)) ->
+  a ->
+  m a
 runStepM step a = do
   ma <- step a
   case ma of
@@ -123,3 +128,6 @@ runPureInteract :: PureInteract a -> WordStream -> ([Word8], a)
 runPureInteract act = go . RWS.runRWS (unPureInteract act) ()
   where
     go (a, _, dl) = (unDL dl [], a)
+
+evalPureInteract :: PureInteract a -> WordStream -> [Word8]
+evalPureInteract act = fst . runPureInteract act
