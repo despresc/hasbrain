@@ -29,6 +29,7 @@ library
   exposed-modules:
     Hasbrain.InterpreterCommon
     Hasbrain.Loop.Instructions
+    Hasbrain.Loop.Parsing
     Hasbrain.Surface
     Hasbrain.Surface.Instructions
     Hasbrain.Surface.Interpreter
