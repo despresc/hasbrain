@@ -17,6 +17,8 @@ executable hasbrain
   import: base
   main-is: Main.hs
   hs-source-dirs: app
+  build-depends:
+    hasbrain
 
 library
   import: base
@@ -25,8 +27,10 @@ library
     megaparsec,
     text,
     containers,
-    mtl
+    mtl,
+    optparse-applicative
   exposed-modules:
+    Hasbrain.Interactive
     Hasbrain.InterpreterCommon
     Hasbrain.Loop
     Hasbrain.Loop.Instructions

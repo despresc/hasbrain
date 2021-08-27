@@ -95,10 +95,10 @@ pAllInstrs = do
 -- | Parse a brainfuck program from the given named input
 parseProgram ::
   -- | name of the input
-  Text ->
+  String ->
   -- | the input
   Text ->
   Either Text [Instr]
 parseProgram name =
   either (Left . T.pack . MP.errorBundlePretty) Right
-    . MP.runParser pAllInstrs (T.unpack name)
+    . MP.runParser pAllInstrs name
