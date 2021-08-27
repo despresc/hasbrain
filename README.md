@@ -10,7 +10,7 @@ interpreters. It also provides a `hasbrain` executable with the single command
 program in `FILE`. Very rudimentary documentation can be viewed by running
 `hasbrain interpret` alone; by default, the interpreter takes program input from
 stdin, encoded as pairs of hexadecimal numbers, and writes the program output to
-stdout in the same format.
+stdout in the same format (with a little leading and trailing whitespace).
 
 The [Wikipedia article](https://en.wikipedia.org/wiki/Brainfuck) has a
 description of the brainfuck language and its usual variants. Note that this
