@@ -18,7 +18,7 @@ package considers brainfuck programs to run on a two-way infinite data tape with
 values initialized at 0. All data cell values, input values, and output values
 are bytes, and all incrementing and decrementing is performed modulo 256; in
 particular, byte overflow and underflow are permitted. The only restriction
-imposed on brainfuck program syntax is that the characters '[' and ']' be
+imposed on brainfuck program syntax is that the brackets '[' and ']' must be
 balanced.
 
 
@@ -36,8 +36,7 @@ balanced.
   formatting), a `--help` option, a list of possible commands, better command
   documentation.
 - A `Loop` interpreter with reified, streaming stepping instead of the current
-  `MonadInteract` approach. I suppose the states would be `Yield Word8 Thing`
-  and `Read (Word8 -> Thing)`? This would allow for a streaming command line
+  `MonadInteract` approach. This would allow for a streaming command line
   interpreter; the current one simply reads in all input at once, then writes
   all output at once. It would also make writing an interactive interpreter
   easier, one where input to the brainfuck program would be adjustable based on
