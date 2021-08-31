@@ -1,5 +1,12 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
+-- Description: Naive brainfuck parser
+-- Copyright: 2021 Christian Despres
+-- License: BSD-2-Clause
+-- Maintainer: Christian Despres
+--
+-- A parser for the brainfuck instruction set in "Hasbrain.Surface.Instructions"
 module Hasbrain.Surface.Parsing where
 
 import Control.Applicative ((<|>))

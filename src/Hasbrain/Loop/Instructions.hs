@@ -1,3 +1,14 @@
+-- |
+-- Description: Modified brainfuck instruction set
+-- Copyright: 2021 Christian Despres
+-- License: BSD-2-Clause
+-- Maintainer: Christian Despres
+--
+-- A slightly modified brainfuck instruction set that replaces the surface-level
+-- left and right jumps with a single 'Loop', and collects runs of increment and
+-- decrement instructions into a single 'Add' instruction. The resulting
+-- instruction set is much more convenient to work with, since lists of such
+-- instructions do not have to maintain any invariants.
 module Hasbrain.Loop.Instructions where
 
 import Data.Text (Text)

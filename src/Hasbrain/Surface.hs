@@ -1,3 +1,12 @@
+-- |
+-- Description: Naive brainfuck interpreter
+-- Copyright: 2021 Christian Despres
+-- License: BSD-2-Clause
+-- Maintainer: Christian Despres
+--
+-- This module re-exports a very direct translation of the brainfuck instruction
+-- set, as well as a stepped interpreter for that instruction set that simulates
+-- the operation of the brainfuck VM.
 module Hasbrain.Surface
   ( -- * The surface-level instruction set
     Instr (..),

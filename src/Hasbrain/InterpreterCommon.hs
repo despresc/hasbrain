@@ -1,5 +1,12 @@
 {-# LANGUAGE GeneralizedNewtypeDeriving #-}
 
+-- |
+-- Description: Common interpreter definitions
+-- Copyright: 2021 Christian Despres
+-- License: BSD-2-Clause
+-- Maintainer: Christian Despres
+--
+-- A collection of shared resources for simple brainfuck interpreters
 module Hasbrain.InterpreterCommon where
 
 import Control.Monad.RWS.Strict (RWS)

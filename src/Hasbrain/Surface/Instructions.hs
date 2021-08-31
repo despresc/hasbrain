@@ -1,5 +1,13 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
+-- Description: Raw brainfuck instruction set
+-- Copyright: 2021 Christian Despres
+-- License: BSD-2-Clause
+-- Maintainer: Christian Despres
+--
+-- A very direct translation of the brainfuck instruction set to a Haskell data
+-- type.
 module Hasbrain.Surface.Instructions where
 
 import Data.Text (Text)

@@ -1,5 +1,12 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
+-- Description: Brainfuck CLI
+-- Copyright: 2021 Christian Despres
+-- License: BSD-2-Clause
+-- Maintainer: Christian Despres
+--
+-- An implementation of a simple @hasbrain@ CLI tool
 module Hasbrain.Interactive where
 
 import Data.Char (isHexDigit)

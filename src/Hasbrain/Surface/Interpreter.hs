@@ -1,11 +1,19 @@
 {-# LANGUAGE BangPatterns #-}
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
+-- Description: Naive interpreter
+-- Copyright: 2021 Christian Despres
+-- License: BSD-2-Clause
+-- Maintainer: Christian Despres
+--
+-- An interpreter operating on the brainfuck instruction set in
+-- "Hasbrain.Surface.Instructions", simulating the brainfuck VM exactly.
 module Hasbrain.Surface.Interpreter where
 
 import Data.Traversable (for)
-import Hasbrain.Surface.Instructions
 import Hasbrain.InterpreterCommon
+import Hasbrain.Surface.Instructions
 
 -- | Move right along the tape until just after an unmatched 'JumpFromRight' is
 -- encountered, or until the end of the tape is reached

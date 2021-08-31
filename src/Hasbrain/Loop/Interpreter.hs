@@ -1,10 +1,19 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
+-- Description: Direct brainfuck interpreter
+-- Copyright: 2021 Christian Despres
+-- License: BSD-2-Clause
+-- Maintainer: Christian Despres
+--
+-- A stepped interpreter for the modified brainfuck instruction set in
+-- "Hasbrain.Loop.Instructions", translating the operation of the brainfuck VM
+-- very directly
 module Hasbrain.Loop.Interpreter where
 
 import Data.Traversable (for)
-import Hasbrain.Loop.Instructions
 import Hasbrain.InterpreterCommon
+import Hasbrain.Loop.Instructions
 
 -- | Run a single instruction from the given 'BrainState'. This counts a 'Loop'
 -- as a single instruction, notably.
@@ -21,13 +30,13 @@ stepState bs = for (popInstrRight $ brainInstrs bs) $ \(ci, bis) ->
         Input -> do
           w <- getByte
           pure $ bsL {brainData = setData w $ brainData bs}
-        Loop x -> runLoop $ bs { brainInstrs = initInstrTape x }
+        Loop x -> runLoop $ bs {brainInstrs = initInstrTape x}
           where
             runLoop loopBS
               | readData (brainData loopBS) == 0 = pure bsL
               | otherwise = do
-                  loopBS' <- runStepM stepState loopBS
-                  if readData (brainData loopBS') == 0
-                    then pure $ loopBS' {brainInstrs = brainInstrs bsL}
-                    else runLoop $ loopBS' {brainInstrs = initInstrTape x}
+                loopBS' <- runStepM stepState loopBS
+                if readData (brainData loopBS') == 0
+                  then pure $ loopBS' {brainInstrs = brainInstrs bsL}
+                  else runLoop $ loopBS' {brainInstrs = initInstrTape x}
         Comment _ -> pure bsL

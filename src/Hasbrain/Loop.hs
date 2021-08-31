@@ -1,3 +1,20 @@
+-- |
+-- Description: Slightly modified brainfuck instruction set
+-- Copyright: 2021 Christian Despres
+-- License: BSD-2-Clause
+-- Maintainer: Christian Despres
+--
+-- This module re-exports an instruction set with equivalent power to the naive
+-- set provided by "Hasbrain.Surface". This set replaces the jumps of the
+-- surface language with a single 'Loop' instruction, and gathers runs of
+-- increment and decrement instructions into a single 'Add' instruction. The
+-- result is better-typed, since we no longer have to worry about maintaining
+-- the invariant that in lists of instructions there must be balanced left and
+-- right jumps.
+--
+-- The interpreter for this instruction set is still very direct, but is at
+-- least cleaner and more efficient than the one in "Hasbrain.Surface" because
+-- of the more convenient instruction set.
 module Hasbrain.Loop
   ( -- * The loop instruction set
     Instr (..),

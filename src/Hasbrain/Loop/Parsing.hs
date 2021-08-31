@@ -1,5 +1,17 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
+-- Description: Brainfuck parser
+-- Copyright: 2021 Christian Despres
+-- License: BSD-2-Clause
+-- Maintainer: Christian Despres
+--
+-- A parser for the brainfuck language that returns the modified instructions in
+-- the 'Instr' type. This parser takes a 'Text' stream and not a stream of
+-- instructions from "Hasbrain.Surface.Instructions" to avoid double-parsing; it
+-- is nicer to parse the 'Loop' instruction directly from the source code,
+-- rather than first parsing balanced jump instructions then re-parsing the
+-- resulting instruction stream.
 module Hasbrain.Loop.Parsing where
 
 import Control.Applicative ((<|>))
