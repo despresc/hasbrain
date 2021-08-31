@@ -35,7 +35,7 @@ brainfuck program is that the left and right brackets be balanced.
 + | increment data pointer value
 - | decrement data pointer value
 . | output data pointer value
-, | accept one byte of input and store in the data pointer
+, | accept one input value and store in the data pointer
 [ | if the data pointer value is zero, jump to the instruction after the matching ]
 ] | if the data pointer value is nonzero, jump to the instruction after the matching [
 ```
@@ -49,7 +49,8 @@ virtual machine:
 - the data tape is two-way infinite and all cells are initialized to 0
 - increment and decrement operations are performed modulo 256, so in particular
   overflow and underflow are not errors
-- the input list is an infinite stream of values
+- the input list is an infinite stream of values, and insufficient input is
+  extended with 0 values as needed
 
 ## Possible future improvements
 
